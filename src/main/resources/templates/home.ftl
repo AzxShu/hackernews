@@ -15,18 +15,18 @@
                 <#assign  cur_date =vo.news.createdDate?string("yyyy-MM-dd")/>
             <h3 class="date">
                 <i class="fa icon-calendar"></i>
-                <span>美食资讯 &nbsp; ${vo.news.createdDate?string("yyyy-MM-dd")}</span>
+                <span>新闻资讯 &nbsp; ${vo.news.createdDate?string("yyyy-MM-dd")}</span>
             </h3>
             <div class="posts">
             </#if>
                  <div class="post">
                     <div class="votebar">
-                        <#if  vo.like gt 0 >
+                        <#if  vo.news.likeCount gt 0 >
                         <button class="click-like up pressed" data-id="${vo.news.id!}" title="赞同"><i class="vote-arrow"></i><span class="count">${vo.news.likeCount!}</span></button>
                         <#else>
                         <button class="click-like up" data-id="${vo.news.id!}" title="赞同"><i class="vote-arrow"></i><span class="count">${vo.news.likeCount!}</span></button>
                         </#if>
-                        <#if vo.like < 0>
+                        <#if vo.news.likeCount < 0>
                         <button class="click-dislike down pressed" data-id="${vo.news.id!}" title="反对"><i class="vote-arrow"></i></button>
                         <#else>
                         <button class="click-dislike down" data-id="${vo.news.id!}" title="反对"><i class="vote-arrow"></i></button>

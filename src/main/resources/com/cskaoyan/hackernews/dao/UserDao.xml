@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cskaoyan.hackernews.dao.UserDao">
+
+    <insert id="insertUser">
+        insert into user(name,password) values(#{email},#{password})
+    </insert>
+
+    <select id="queryUserIsExistByUsername" resultType="user">
+        select * from user where name = #{username}
+    </select>
+
+    <select id="queryUserByUsernameAndPassword" resultType="user">
+        select * from user where name = #{username} and password = #{password}
+    </select>
+
+    <select id="queryUserIdByUsername" resultType="user">
+        select id from user where name = #{username}
+    </select>
+
+    <insert id="insertNews">
+        insert into news(title,link,image,user_id,created_date,like_count,comment_count)
+        values(#{title},#{link},#{imagepath},#{id},#{date},#{like_count},#{comment_count})
+    </insert>
+
+    <resultMap id="query" type="vobean">
+        <association property="news" javaType="news">
+            <result column="id" property="id"/>
+            <result column="title" property="title"/>
+            <result column="link" property="link"/>
+            <result column="image" property="image"/>
+            <result column="like_count" property="likeCount"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="user_id" property="userId"/>
+            <result column="comment_count" property="commentCount"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="usrname" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="queryAllNews" resultMap="query">
+         SELECT
+        n.id,
+        n.title,
+        n.link,
+        n.image,
+        n.user_id,
+        n.created_date,
+        n.like_count,
+        n.comment_count,
+        u.id AS id,
+        u.name AS usrname,
+        u.`head_url` AS headurl
+        FROM
+        news AS n
+        LEFT JOIN
+        USER AS u
+        ON
+        n.`user_id` = u.`id`
+        ORDER BY n.id DESC LIMIT 3
+    </select>
+</mapper>

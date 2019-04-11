@@ -2,9 +2,9 @@
     <div class="container">
         <p class="text-center">
             <a href="http://cskaoyan.com/about">关于我们</a>
-            <a href="http://cskaoyan.com/download">美食资讯客户端</a>
+            <a href="http://cskaoyan.com/download">新闻资讯客户端</a>
         </p>
-        <p class="text-center">© 2013-2016 美食八卦</p>
+        <p class="text-center">© 1912-2077 🐶</p>
     </div>
 
 </footer>

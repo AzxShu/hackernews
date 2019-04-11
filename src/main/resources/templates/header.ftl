@@ -2,7 +2,7 @@
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>吃货头条 - 王道码农训练营</title>
+    <title>乱码头条 - 乱码集中营</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 
@@ -37,8 +37,8 @@
             </button>
 
             <a href="${contextPath}" class="navbar-brand logo">
-                <h1>美食资讯</h1>
-                <h3>有好吃的才是王道</h3>
+                <h1>吃不下去</h1>
+                <h3>看见乱码心好烦</h3>
             </a>
         </div>
 
