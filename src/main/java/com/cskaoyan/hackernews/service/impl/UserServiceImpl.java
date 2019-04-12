@@ -1,6 +1,7 @@
 package com.cskaoyan.hackernews.service.impl;
 
 import com.cskaoyan.hackernews.bean.News;
+import com.cskaoyan.hackernews.bean.User;
 import com.cskaoyan.hackernews.bean.VoBean;
 import com.cskaoyan.hackernews.dao.UserDao;
 import com.cskaoyan.hackernews.service.UserService;
@@ -23,5 +24,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<VoBean> queryAllNews() {
         return userDao.queryAllNews();
+    }
+
+    @Override
+    public User queryUserById(String id) {
+        return userDao.queryUserById(id);
     }
 }

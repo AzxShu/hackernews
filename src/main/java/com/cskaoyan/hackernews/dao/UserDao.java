@@ -26,4 +26,6 @@ public interface UserDao {
                     @Param("comment_count") int comment_count);
 
     List<VoBean> queryAllNews();
+
+    User queryUserById(@Param("id")String id);
 }

@@ -5,7 +5,6 @@ import com.cskaoyan.hackernews.bean.User;
 import com.cskaoyan.hackernews.bean.VoBean;
 import com.cskaoyan.hackernews.dao.UserDao;
 import com.cskaoyan.hackernews.service.UserService;
-import com.cskaoyan.hackernews.util.FileUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,45 +94,13 @@ public class MainController {
         return "redirect:/";
     }
     //用户信息查看
-    @RequestMapping("user/118/")
-    public void userMess(@PathVariable("id") String id){
-
-    }
-
-    //图片上传
-    @RequestMapping("uploadImage")
-    @ResponseBody
-    public Map uploadImage(HttpServletRequest request,HttpSession session,@RequestParam("file") MultipartFile file){
-        String fileName = file.getOriginalFilename();
-        String suffixName = fileName.substring(fileName.lastIndexOf("."));
-        fileName = UUID.randomUUID() + suffixName;
-        URL resource =
-                MainController.class.getClassLoader().getResource("static/images");
-        String path = resource.getPath();
-        File file1 = new File(path +"/"+ fileName);
-        try {
-            file.transferTo(file1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Map<Object, Object> hashMap = new HashMap<>();
-        hashMap.put("code",0);
-        hashMap.put("msg","http://localhost/images/"+fileName);
-        session.setAttribute("filepath","http://localhost/images/"+fileName);
-        return hashMap;
-    }
-
-
-    @RequestMapping("user/addNews")
-    @ResponseBody
-    public Map image(@RequestParam String title,String link ,HttpServletRequest request,HttpSession session){
-        String imagepath = (String) session.getAttribute("filepath");
-        //获取新闻的图片的链接和标题，链接后将其插入到数据库中
-        User user = (User) session.getAttribute("user");
-        System.out.println(new Date());
-        userService.insertNews(user.getId(),title,link,imagepath,new Date(),0,0);
-        Map<Object, Object> hashMap = new HashMap<>();
-        session.removeAttribute("filepath");
-        return hashMap;
+    @RequestMapping("user/{id}")
+    public String userMess(@PathVariable("id") String id,HttpServletRequest request,Model model){
+        String contextPath = request.getContextPath();
+        model.addAttribute("contextPath",contextPath);
+        System.out.println(id);
+        User user = userService.queryUserById(id);
+        model.addAttribute("user",user);
+        return "personal";
     }
 }

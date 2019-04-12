@@ -63,4 +63,12 @@
         n.`user_id` = u.`id`
         ORDER BY n.id DESC LIMIT 3
     </select>
+
+
+    <select id="queryUserById" resultType="user">
+        select * from user
+        <where>
+            id = #{id}
+        </where>
+    </select>
 </mapper>

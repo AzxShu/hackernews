@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cskaoyan.hackernews.dao.NewsDao">
+    <sql id="table">news</sql>
+    <sql id="selectFields">id,title, link, image, like_count, comment_count,created_date,user_id
+    </sql>
+    <!--<select id="selectByUserIdAndOffset" resultType="com.cskaoyan.hackernews.bean.News">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+
+        <if test="userId != 0">
+            WHERE user_id = #{userId}
+        </if>
+        ORDER BY id DESC
+        LIMIT #{offset},#{limit}
+    </select>-->
+
+
+    <resultMap id="query2" type="vobean">
+        <association property="news" javaType="news">
+            <result column="id" property="id"/>
+            <result column="title" property="title"/>
+            <result column="link" property="link"/>
+            <result column="image" property="image"/>
+            <result column="like_count" property="likeCount"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="user_id" property="userId"/>
+            <result column="comment_count" property="commentCount"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="usrname" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="queryNewsById" resultMap="query2">
+         SELECT
+        n.id,
+        n.title,
+        n.link,
+        n.image,
+        n.user_id,
+        n.created_date,
+        n.like_count,
+        n.comment_count,
+        u.id AS id,
+        u.name AS usrname,
+        u.`head_url` AS headurl
+        FROM
+        news AS n
+        LEFT JOIN
+        USER AS u
+        ON
+        n.`user_id` = u.`id`
+        where n.id = #{id}
+    </select>
+
+    <insert id="insertNewComment">
+        insert into comment(content,user_id,entity_id,entity_type,created_date)
+        values(#{content},#{userid},#{newid},#{i},#{date})
+    </insert>
+
+    <resultMap id="queryVoBeanOfCommentAndUser" type="VoBeanOfCommentAndUser">
+        <association property="comment" javaType="comment">
+            <result column="content" property="content"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="entity_id" property="entityId"/>
+            <result column="entity_type" property="entityType"/>
+            <result column="id" property="id"/>
+            <result column="status" property="status"/>
+            <result column="user_id" property="userId"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="usrname" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="queryNewsCommentByNewId" resultMap="queryVoBeanOfCommentAndUser">
+         SELECT
+          c.`content`,
+	      c.`created_date`,
+	      c.`entity_id`,
+	      c.`entity_type`,
+	      c.`id`,
+	      c.`status`,
+	      c.`user_id`,
+	      u.`head_url`,
+	      u.`id`,
+	      u.`name`
+          FROM
+          COMMENT AS c
+          LEFT JOIN
+          USER AS u
+          ON
+          c.`user_id` = u.`id`
+          <where>
+              c.`entity_id` = #{id}
+          </where>
+    </select>
+
+    <update id="updataCommentCount">
+        update news set comment_count=comment_count+1 where id = #{id}
+    </update>
+
+</mapper>
