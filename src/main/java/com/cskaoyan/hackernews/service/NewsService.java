@@ -15,4 +15,12 @@ public interface NewsService {
     List<VoBeanOfCommentAndUser> queryNewsCommentByNewId(String id);
 
     void updataCommentCount(String id);
+
+    void addAndQueryPointByNewsId(String newsId);
+
+    News queryPointByNewsId(String newsId);
+
+    void dislikePointByNewsId(String newsId);
+
+    News selectNewOwnerIdById(String id);
 }

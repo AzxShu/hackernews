@@ -4,12 +4,12 @@
         <div class="post detail">
 
             <div class="votebar">
-                <#if news.likeCount gt 0>
+                <#if like gt 0>
                 <button class="click-like up pressed" data-id="${news.id}" title="赞同"><i class="vote-arrow"></i><span class="count">${news.likeCount!}</span></button>
                 <#else>
                 <button class="click-like up" data-id="${news.id}" title="赞同"><i class="vote-arrow"></i><span class="count">${news.likeCount!}</span></button>
                 </#if>
-                <#if news.likeCount gt 0>
+                <#if like lt 0>
                 <button class="click-dislike down pressed" data-id="${news.id}" title="反对"><i class="vote-arrow"></i></button>
                 <#else>
                 <button class="click-dislike down" data-id="${news.id}" title="反对"><i class="vote-arrow"></i></button>
@@ -29,6 +29,7 @@
                               <span>
                                   <i class="fa icon-comment"></i> ${news.commentCount!}
                               </span>
+                        <p>发布于:${time}</p>
                     </div>
                 </div>
             </div>
@@ -54,7 +55,8 @@
 
         <div class="post-comment-form">
             <#if user??>
-            <span>评论 (${news.commentCount!})</span>
+            <span>评论 (${news.commentCount!})
+            </span>
             <form method="post" action="${contextPath}/addComment">
                 <input name="newsId" type="hidden" value="${news.id}">
 
@@ -74,9 +76,22 @@
             </#if>
         </div>
 
+        <#--对评论的点赞-->
         <div id="comments" class="comments">
-            <#list  comments as commentvo >
+            <#list comments as commentvo >
             <div class="media">
+                <#--<div class="votebar">
+                    <#if like gt 0>
+                        <button class="click-like up pressed" data-id="${news.id}" title="赞同"><i class="vote-arrow"></i><span class="count">${news.likeCount!}</span></button>
+                    <#else>
+                        <button class="click-like up" data-id="${news.id}" title="赞同"><i class="vote-arrow"></i><span class="count">${news.likeCount!}</span></button>
+                    </#if>
+                    <#if like lt 0>
+                        <button class="click-dislike down pressed" data-id="${news.id}" title="反对"><i class="vote-arrow"></i></button>
+                    <#else>
+                        <button class="click-dislike down" data-id="${news.id}" title="反对"><i class="vote-arrow"></i></button>
+                    </#if>
+                </div>-->
                 <a class="media-left" href="${contextPath}/user/${commentvo.user.id!}">
                     <img src="${commentvo.user.headUrl!}">
                 </a>
@@ -86,7 +101,15 @@
                         </small>
                     </h4>
                     <div>${commentvo.comment.content!}</div>
+                    <div class="media-left">
+                 <#--<form method="post" action="/user/reply">
+                    <input type="text" name="reply_text">
+                       <input type="submit" value="回复">
+                    </a>
+                 </form>-->
+                    </div>
                 </div>
+                <h6>来自:${commentvo.user.name}</h6>
             </div>
             </#list>
         </div>

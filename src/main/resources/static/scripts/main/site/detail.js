@@ -8,7 +8,8 @@
         binds: {
             //.表示class #表示id
             'click .js-login': fClickLogin,
-            'click .js-share': fClickShare
+            'click .js-share': fClickShare,
+            'click .js-update': fClickUpdate
         },
         events: {
             'click button.click-like': fClickLike,
@@ -32,6 +33,18 @@
                 }
             });
     }
+    function fClickUpdate() {
+        var that = this;
+        PopupUpload.show({
+            listeners: {
+                done: function () {
+                    //alert('login');
+                    window.location.reload();
+                }
+            }
+        });
+    }
+
     function fClickLogin() {
         var that = this;
         PopupLogin.show({
@@ -48,7 +61,7 @@
         });
     }
 
-    function fClickLike(oEvent) {
+   /* function fClickLike(oEvent) {
         var that = this;
         var oEl = $(oEvent.currentTarget);
         var sId = $.trim(oEl.attr('data-id'));
@@ -97,6 +110,6 @@
                 that.actioning = false;
             }
         });
-    }
+    }*/
 
 })(window);

@@ -19,7 +19,14 @@ var oPopupUpload = new PopupUpload({
                     '<div class="js-image-container col-sm-10">',
                         '<a href="javascript:void(0);" class="btn btn-info btn-upload js-upload-btn" style="diplay:inline-block;position:relative;">上传图片</a>',
                     '</div>',
-                '</div>',
+                    '</div>',
+                    '<div class="form-group"><label class="col-sm-2 control-label">分类</label><div class="col-sm-10">' +
+                    '<select class="js-fenlei form-control">' +
+                    '<option value="">---待选择---</option></option> <option value="娱乐">娱乐</option>' +
+                    ' <option value="财经">财经</option>' +
+                    '<option value="电竞">电竞</option><option value="时政">时政</option><option value="科技">科技</option>' +
+                    '<option value="体育">体育</option><option value="汽车">汽车</option><option value="历史">历史</option>' +
+                    '</select></div></div>',
                   '<div class="form-group"><label class="col-sm-2 control-label">标题</label><div class="col-sm-10"><input class="js-title form-control" type="text"></div></div>',
                   '<div class="form-group"><label class="col-sm-2 control-label">链接</label><div class="col-sm-10"><input class="js-link form-control" type="text"></div></div>',
                   '<div class="form-group">',
@@ -60,11 +67,15 @@ var oPopupUpload = new PopupUpload({
                 var oEl = that.getEl();
                 var sTitle = $.trim(oEl.find('input.js-title').val());
                 var sLink = $.trim(oEl.find('input.js-link').val());
+                var sFenlei = $.trim(oEl.find('select.js-fenlei').val());
                 if (!sTitle) {
                     return alert('标题不能为空');
                 }
                 if (!sLink) {
                     return alert('链接不能为空');
+                }
+                if (!sFenlei) {
+                    return alert('分类不能为空');
                 }
                 if (!that.image) {
                     return alert('图片不能为空');
@@ -76,7 +87,7 @@ var oPopupUpload = new PopupUpload({
                 $.ajax({
                     url: '/user/addNews/',
                     method: 'post',
-                    data: {image: that.image, title: sTitle, link: sLink},
+                    data: {image: that.image, title: sTitle, link: sLink,fenlei: sFenlei},
                     dataType: 'json'
                 }).done(function (oResult) {
                     that.emit('done');
@@ -92,6 +103,7 @@ var oPopupUpload = new PopupUpload({
         initialize: fInitialize,
         showImage: fShowImage
     });
+
 
     function fStaticShow(oConf) {
         var that = this;

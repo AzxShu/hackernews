@@ -39,4 +39,28 @@ public class NewsServiceImpl implements NewsService {
         int i = Integer.parseInt(id);
         newsDao.updataCommentCount(i);
     }
+
+    @Override
+    public void addAndQueryPointByNewsId(String newsId) {
+        int i = Integer.parseInt(newsId);
+        newsDao.addAndQueryPointByNewsId(i) ;
+    }
+
+    @Override
+    public News queryPointByNewsId(String newsId) {
+        int i = Integer.parseInt(newsId);
+        return newsDao.queryPointByNewsId(i) ;
+    }
+
+    @Override
+    public void dislikePointByNewsId(String newsId) {
+        int i = Integer.parseInt(newsId);
+        newsDao.dislikePointByNewsId(i);
+    }
+
+    @Override
+    public News selectNewOwnerIdById(String id) {
+        int i = Integer.parseInt(id);
+        return newsDao.selectNewOwnerIdById(i) ;
+    }
 }

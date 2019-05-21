@@ -1,0 +1,27 @@
+{
+    "HtmlContent":"function=select:html",
+    "itm":{
+        "key":"class=content",
+        "content":{
+            "title":{
+                "id":"class=feed_content:0",
+                "fun_1":"class=W_fb:0",
+                "fun_2":"function=text"
+            },
+            "url":{
+                "id":"class=feed_content:0",
+                "fun_1":"class=W_fb:0",
+                "fun_2":"function=select:a",
+                "fun_3":"function=attr:href"
+            },
+            "intro":{
+                "id":"class=comment_txt:0",
+                "fun_1":"function=text"
+            },
+            "datetime":{
+                "id":"class=W_textb:1",
+                "fun_1":"function=text"
+            }
+        }
+    }
+}

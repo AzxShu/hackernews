@@ -4,7 +4,7 @@
 <mapper namespace="com.cskaoyan.hackernews.dao.UserDao">
 
     <insert id="insertUser">
-        insert into user(name,password) values(#{email},#{password})
+        insert into user(name,password,head_url) values(#{email},#{password},#{headimg})
     </insert>
 
     <select id="queryUserIsExistByUsername" resultType="user">
@@ -20,8 +20,8 @@
     </select>
 
     <insert id="insertNews">
-        insert into news(title,link,image,user_id,created_date,like_count,comment_count)
-        values(#{title},#{link},#{imagepath},#{id},#{date},#{like_count},#{comment_count})
+        insert into news(title,link,image,user_id,created_date,like_count,comment_count,category)
+        values(#{title},#{link},#{imagepath},#{id},#{date},#{like_count},#{comment_count},#{fenlei})
     </insert>
 
     <resultMap id="query" type="vobean">
@@ -34,6 +34,7 @@
             <result column="created_date" property="createdDate"/>
             <result column="user_id" property="userId"/>
             <result column="comment_count" property="commentCount"/>
+            <result column="category" property="category"/>
         </association>
         <association property="user" javaType="user">
             <result column="id" property="id"/>
@@ -43,7 +44,7 @@
     </resultMap>
 
     <select id="queryAllNews" resultMap="query">
-         SELECT
+        SELECT
         n.id,
         n.title,
         n.link,
@@ -52,6 +53,7 @@
         n.created_date,
         n.like_count,
         n.comment_count,
+        n.category,
         u.id AS id,
         u.name AS usrname,
         u.`head_url` AS headurl
@@ -61,7 +63,179 @@
         USER AS u
         ON
         n.`user_id` = u.`id`
-        ORDER BY n.id DESC LIMIT 3
+        ORDER BY n.id DESC
+    </select>
+
+    <resultMap id="querybypage" type="vobean">
+        <association property="news" javaType="news">
+            <result column="id" property="id"/>
+            <result column="title" property="title"/>
+            <result column="link" property="link"/>
+            <result column="image" property="image"/>
+            <result column="like_count" property="likeCount"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="user_id" property="userId"/>
+            <result column="comment_count" property="commentCount"/>
+            <result column="category" property="category"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="usrname" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="queryAllNewsByPage" resultMap="querybypage">
+        SELECT
+        n.id,
+        n.title,
+        n.link,
+        n.image,
+        n.user_id,
+        n.created_date,
+        n.like_count,
+        n.comment_count,
+        n.category,
+        u.id AS id,
+        u.name AS usrname,
+        u.`head_url` AS headurl
+        FROM
+        news AS n
+        LEFT JOIN
+        USER AS u
+        ON
+        n.`user_id` = u.`id`
+        ORDER BY n.id DESC
+        LIMIT #{page},#{limit}
+    </select>
+
+    <resultMap id="hotNews" type="vobean">
+        <association property="news" javaType="news">
+            <result column="id" property="id"/>
+            <result column="title" property="title"/>
+            <result column="link" property="link"/>
+            <result column="image" property="image"/>
+            <result column="like_count" property="likeCount"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="user_id" property="userId"/>
+            <result column="comment_count" property="commentCount"/>
+            <result column="category" property="category"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="usrname" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="queryAllNewsOfHotNews" resultMap="hotNews">
+        SELECT
+        n.id,
+        n.title,
+        n.link,
+        n.image,
+        n.user_id,
+        n.created_date,
+        n.like_count,
+        n.comment_count,
+        n.category,
+        u.id AS id,
+        u.name AS usrname,
+        u.`head_url` AS headurl
+        FROM
+        news AS n
+        LEFT JOIN
+        USER AS u
+        ON
+        n.`user_id` = u.`id`
+        ORDER BY score DESC LIMIT 5
+    </select>
+
+    <resultMap id="recent" type="vobean">
+        <association property="news" javaType="news">
+            <result column="id" property="id"/>
+            <result column="title" property="title"/>
+            <result column="link" property="link"/>
+            <result column="image" property="image"/>
+            <result column="like_count" property="likeCount"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="user_id" property="userId"/>
+            <result column="comment_count" property="commentCount"/>
+            <result column="category" property="category"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="usrname" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="queryAllNewsOfRecent" resultMap="recent">
+        SELECT
+        n.id,
+        n.title,
+        n.link,
+        n.image,
+        n.user_id,
+        n.created_date,
+        n.like_count,
+        n.comment_count,
+        n.category,
+        u.id AS id,
+        u.name AS usrname,
+        u.`head_url` AS headurl
+        FROM
+        news AS n
+        LEFT JOIN
+        USER AS u
+        ON
+        n.`user_id` = u.`id`
+        ORDER BY created_date DESC LIMIT 5
+    </select>
+
+    <resultMap id="queryNewsOfUser" type="vobean">
+        <association property="news" javaType="news">
+            <result column="id" property="id"/>
+            <result column="title" property="title"/>
+            <result column="link" property="link"/>
+            <result column="image" property="image"/>
+            <result column="like_count" property="likeCount"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="user_id" property="userId"/>
+            <result column="comment_count" property="commentCount"/>
+            <result column="category" property="category"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="usrname" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="queryAllNewsOfUserById" resultMap="queryNewsOfUser">
+        SELECT
+        n.id,
+        n.title,
+        n.link,
+        n.image,
+        n.user_id,
+        n.created_date,
+        n.like_count,
+        n.comment_count,
+        n.category,
+        u.id AS id,
+        u.name AS usrname,
+        u.`head_url` AS headurl
+        FROM
+        news AS n
+        LEFT JOIN
+        USER AS u
+        ON
+        n.`user_id` = u.`id`
+        <where>
+            n.`user_id`=#{id}
+        </where>
+
     </select>
 
 
@@ -71,4 +245,126 @@
             id = #{id}
         </where>
     </select>
+
+    <select id="queryUserByName" resultType="user">
+        select * from user
+        <where>
+            name = #{name}
+        </where>
+    </select>
+
+    <update id="updateNewsScore">
+        update news set score = #{score} where id = #{newsid}
+    </update>
+
+    <resultMap id="queryNewsbyCategory" type="vobean">
+        <association property="news" javaType="news">
+            <result column="id" property="id"/>
+            <result column="title" property="title"/>
+            <result column="link" property="link"/>
+            <result column="image" property="image"/>
+            <result column="like_count" property="likeCount"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="user_id" property="userId"/>
+            <result column="comment_count" property="commentCount"/>
+            <result column="category" property="category"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="usrname" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="queryAllNewsByCategory" resultMap="queryNewsbyCategory">
+        SELECT
+        n.id,
+        n.title,
+        n.link,
+        n.image,
+        n.user_id,
+        n.created_date,
+        n.like_count,
+        n.comment_count,
+        n.category,
+        u.id AS id,
+        u.name AS usrname,
+        u.`head_url` AS headurl
+        FROM
+        news AS n
+        LEFT JOIN
+        USER AS u
+        ON
+        n.`user_id` = u.`id`
+        <where>
+           n.category = #{category}
+        </where>
+
+    </select>
+
+
+    <resultMap id="querybycategorybypage" type="vobean">
+        <association property="news" javaType="news">
+            <result column="id" property="id"/>
+            <result column="title" property="title"/>
+            <result column="link" property="link"/>
+            <result column="image" property="image"/>
+            <result column="like_count" property="likeCount"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="user_id" property="userId"/>
+            <result column="comment_count" property="commentCount"/>
+            <result column="category" property="category"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="usrname" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="queryAllNewsByCategoryByPage" resultMap="querybycategorybypage">
+        SELECT
+        n.id,
+        n.title,
+        n.link,
+        n.image,
+        n.user_id,
+        n.created_date,
+        n.like_count,
+        n.comment_count,
+        n.category,
+        u.id AS id,
+        u.name AS usrname,
+        u.`head_url` AS headurl
+        FROM
+        news AS n
+        LEFT JOIN
+        USER AS u
+        ON
+        n.`user_id` = u.`id`
+        <where>
+            n.category = #{category}
+        </where>
+        ORDER BY n.id DESC
+        LIMIT #{page},#{limit}
+
+    </select>
+
+    <delete id="removeUserById">
+        delete from news where id = #{id}
+    </delete>
+
+    <select id="queryNewsByNewsId" resultType="news">
+        select * from news
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
+    <update id="updateNewsByNewsId">
+        update news set title = #{title},link = #{link},category = #{category}
+        <where>
+            id = #{newsid}
+        </where>
+    </update>
 </mapper>

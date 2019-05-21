@@ -75,37 +75,54 @@
             <result column="user_id" property="userId"/>
         </association>
         <association property="user" javaType="user">
-            <result column="id" property="id"/>
-            <result column="usrname" property="name"/>
+            <result column="userid" property="id"/>
+            <result column="username" property="name"/>
             <result column="headurl" property="headUrl"/>
         </association>
     </resultMap>
 
     <select id="queryNewsCommentByNewId" resultMap="queryVoBeanOfCommentAndUser">
          SELECT
-          c.`content`,
+	      c.`content`,
 	      c.`created_date`,
 	      c.`entity_id`,
 	      c.`entity_type`,
 	      c.`id`,
 	      c.`status`,
 	      c.`user_id`,
-	      u.`head_url`,
-	      u.`id`,
-	      u.`name`
+	      u.`id` AS userid,
+	      u.`name` AS username,
+	      u.`head_url` AS headurl
           FROM
           COMMENT AS c
           LEFT JOIN
           USER AS u
           ON
           c.`user_id` = u.`id`
-          <where>
-              c.`entity_id` = #{id}
-          </where>
+          WHERE
+          c.`entity_id` = #{id}
     </select>
 
     <update id="updataCommentCount">
         update news set comment_count=comment_count+1 where id = #{id}
     </update>
 
+    <update id="addAndQueryPointByNewsId">
+        update news set like_count=like_count+1 where id = #{newid}
+    </update>
+
+    <select id="queryPointByNewsId" resultType="news">
+        select * from news where id = #{newid}
+    </select>
+
+    <update id="dislikePointByNewsId">
+        update news set like_count=like_count-1 where id = #{newid}
+    </update>
+
+    <select id="selectNewOwnerIdById" resultType="news">
+        select * from news
+        <where>
+            id = #{newid}
+        </where>
+    </select>
 </mapper>

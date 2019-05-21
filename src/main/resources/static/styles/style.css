@@ -143,7 +143,7 @@ a:hover .caret-white {
 }
 
 .progress-bar-info {
-  background-color: #00B091;
+  background-color: #283e41;
 }
 
 .progress-bar-success {
@@ -195,7 +195,7 @@ a:hover .caret-white {
 }
 
 .form-control:focus {
-  border-color: #00B091;
+  border-color: #283e41;
 }
 
 .form-horizontal .control-label.text-left {
@@ -256,8 +256,8 @@ a.list-group-item.hover {
 
 .list-group-item.active {
   color: #fff;
-  background-color: #00B091 !important;
-  border-color: #00B091 !important;
+  background-color: #283e41 !important;
+  border-color: #283e41 !important;
 }
 
 .list-group-item.active .text-muted {
@@ -317,7 +317,7 @@ a.list-group-item.hover {
 
 .nav-pills > li.active > a {
   color: #fff !important;
-  background-color: #00B091;
+  background-color: #283e41;
 }
 
 .nav-pills > li.active > a:hover,
@@ -392,7 +392,7 @@ a.list-group-item.hover {
 }
 
 .nav-tabs-alt .nav-tabs > li.active > a {
-  border-bottom-color: #00B091 !important;
+  border-bottom-color: #283e41 !important;
 }
 
 .tab-container {
@@ -1474,7 +1474,7 @@ body {
 }
 
 .arrow.top.arrow-info:after {
-  border-bottom-color: #00B091;
+  border-bottom-color: #283e41;
 }
 
 .arrow.top.arrow-success:after {
@@ -1521,7 +1521,7 @@ body {
 }
 
 .arrow.right.arrow-info:after {
-  border-left-color: #00B091;
+  border-left-color: #283e41;
 }
 
 .arrow.right.arrow-success:after {
@@ -1568,7 +1568,7 @@ body {
 }
 
 .arrow.bottom.arrow-info:after {
-  border-top-color: #00B091;
+  border-top-color: #283e41;
 }
 
 .arrow.bottom.arrow-success:after {
@@ -1615,7 +1615,7 @@ body {
 }
 
 .arrow.left.arrow-info:after {
-  border-right-color: #00B091;
+  border-right-color: #283e41;
 }
 
 .arrow.left.arrow-success:after {
@@ -1819,8 +1819,8 @@ fieldset[disabled] .btn-success.active {
 .btn-info.active,
 .open .dropdown-toggle.btn-info {
   color: #ffffff !important;
-  background-color: #00B091;
-  border-color: #00B091;
+  background-color: #283e41;
+  border-color: #283e41;
 }
 
 .btn-info:active,
@@ -1844,8 +1844,8 @@ fieldset[disabled] .btn-info:active,
 .btn-info.disabled.active,
 .btn-info[disabled].active,
 fieldset[disabled] .btn-info.active {
-  background-color: #00B091;
-  border-color: #00B091;
+  background-color: #283e41;
+  border-color: #283e41;
 }
 
 .btn-warning {
@@ -2467,7 +2467,7 @@ fieldset[disabled] .btn-black.active {
 }
 
 .i-checks input:checked + i {
-  border-color: #00B091;
+  border-color: #283e41;
 }
 
 .i-checks input:checked + i:before {
@@ -2475,7 +2475,7 @@ fieldset[disabled] .btn-black.active {
   left: 4px;
   width: 10px;
   height: 10px;
-  background-color: #00B091;
+  background-color: #283e41;
 }
 
 .i-checks input:checked + span .active {
@@ -3277,7 +3277,7 @@ fieldset[disabled] .i-checks input + i:before {
 
 .bg-info {
   color: #dcf2f8;
-  background-color: #00B091;
+  background-color: #283e41;
 }
 
 .bg-info.lt,
@@ -3302,7 +3302,7 @@ fieldset[disabled] .i-checks input + i:before {
 
 .bg-info.bg,
 .bg-info .bg {
-  background-color: #00B091;
+  background-color: #283e41;
 }
 
 .bg-info a {
@@ -3656,7 +3656,7 @@ a.text-info:hover {
 }
 
 .text-info {
-  color: #00B091;
+  color: #283e41;
 }
 
 .text-info-lt {
@@ -4141,7 +4141,7 @@ a.text-#000000:hover {
 }
 
 .b-info {
-  border-color: #00B091;
+  border-color: #283e41;
 }
 
 .b-warning {
@@ -4181,7 +4181,7 @@ a.text-#000000:hover {
 }
 
 .b-l-info {
-  border-left-color: #00B091;
+  border-left-color: #283e41;
 }
 
 .b-l-warning {
@@ -4896,7 +4896,7 @@ a.text-#000000:hover {
   width: 100%;
   height: 0;
   text-indent: -9999px;
-  background-color: #00B091;
+  background-color: #283e41;
 }
 
 .butterbar .bar:before {
@@ -4977,10 +4977,10 @@ a.text-#000000:hover {
 
 @-webkit-keyframes changebar {
   0% {
-    background-color: #00B091;
+    background-color: #283e41;
   }
   33.3% {
-    background-color: #00B091;
+    background-color: #283e41;
   }
   33.33% {
     background-color: #fad733;
@@ -4998,10 +4998,10 @@ a.text-#000000:hover {
 
 @-moz-keyframes changebar {
   0% {
-    background-color: #00B091;
+    background-color: #283e41;
   }
   33.3% {
-    background-color: #00B091;
+    background-color: #283e41;
   }
   33.33% {
     background-color: #fad733;
@@ -5019,10 +5019,10 @@ a.text-#000000:hover {
 
 @keyframes changebar {
   0% {
-    background-color: #00B091;
+    background-color: #283e41;
   }
   33.3% {
-    background-color: #00B091;
+    background-color: #283e41;
   }
   33.33% {
     background-color: #fad733;
@@ -5094,18 +5094,18 @@ a.text-#000000:hover {
 }
 /* line 48, /var/www/prod/v2.toutiao.io/app/assets/stylesheets/posts.scss */
 .post .upvote a.liked, .post .upvote a.favorited {
-  border-left-color: #25bb9b;
-  border-right-color: #25bb9b;
-  background-color: #25bb9b;
+  border-left-color: #000000;
+  border-right-color: #000000;
+  background-color: #000000;
   color: #FFF !important;
 }
 /* line 54, /var/www/prod/v2.toutiao.io/app/assets/stylesheets/posts.scss */
 .post .upvote a.liked {
-  border-top-color: #25bb9b;
+  border-top-color: #000000;
 }
 /* line 55, /var/www/prod/v2.toutiao.io/app/assets/stylesheets/posts.scss */
 .post .upvote a.favorited {
-  border-bottom-color: #25bb9b;
+  border-bottom-color: #000000;
 }
 /* line 57, /var/www/prod/v2.toutiao.io/app/assets/stylesheets/posts.scss */
 .post .upvote a span {
@@ -5160,7 +5160,7 @@ a.text-#000000:hover {
 }
 /* line 111, /var/www/prod/v2.toutiao.io/app/assets/stylesheets/posts.scss */
 .post a:hover {
-  color: #25bb9b;
+  color: #000000;
 }
 /* line 112, /var/www/prod/v2.toutiao.io/app/assets/stylesheets/posts.scss */
 .post a:visited {
@@ -5660,6 +5660,8 @@ form {
 /* line 48, /var/www/prod/v2.toutiao.io/app/assets/stylesheets/application.scss */
 #main {
   margin: 20px auto;
+  /*background-image: url(http://localhost/images/pattern/098.jpg)*/
+  /*background-image: url("http://7rf34y.com2.z0.glb.qiniucdn.com/hero.jpg");*/
 }
 
 /* line 52, /var/www/prod/v2.toutiao.io/app/assets/stylesheets/application.scss */
@@ -5827,8 +5829,8 @@ header.navbar .navbar-toggle .icon-bar {
 /* line 187, /var/www/prod/v2.toutiao.io/app/assets/stylesheets/application.scss */
 .daily h3.date {
   padding: 10px;
-  color: #25bb9b;
-  border-bottom: 2px solid #25bb9b;
+  color: #000000;
+  border-bottom: 2px solid #000000;
   font-weight: 600;
   font-size: 20px;
 }
@@ -6411,6 +6413,8 @@ header.navbar .navbar-toggle .icon-bar {
     padding-right: 5px;
   }
 
+
+
   /* line 13, /var/www/prod/v2.toutiao.io/app/assets/stylesheets/responsive.scss */
   footer {
     padding: 15px 0;
@@ -6552,7 +6556,7 @@ header.navbar .navbar-toggle .icon-bar {
     background: #eff6fa;
     border: none;
     border-radius: 3px;
-    color: #25bb9b;
+    color: #000000;
     cursor: pointer;
     display: block;
     font-weight: 500;
@@ -6587,7 +6591,7 @@ header.navbar .navbar-toggle .icon-bar {
     width: 0;
 }
 .votebar .up .vote-arrow {
-    border-bottom-color: #25bb9b;
+    border-bottom-color: #000000;
     border-top-style: solid;
     border-top-width: 0;
     margin-bottom: 10px;
@@ -6598,7 +6602,7 @@ header.navbar .navbar-toggle .icon-bar {
 }
 .votebar .down .vote-arrow {
     border-bottom-width: 0;
-    border-top-color: #25bb9b;
+    border-top-color: #000000;
 }
 .votebar .down:hover .vote-arrow,
 .votebar .down.pressed .vote-arrow {
@@ -6608,7 +6612,7 @@ header.navbar .navbar-toggle .icon-bar {
 .votebar .down:hover,
 .votebar .up.pressed,
 .votebar .down.pressed {
-    background: #25bb9b;
+    background: #000000;
     color: #fff;
 }
 .votebar .down {
@@ -6661,7 +6665,7 @@ header.navbar .navbar-toggle .icon-bar {
     color: #21a88b;
 }
 .letter-info a:hover {
-    color: #25bb9b;
+    color: #000000;
 }
 .letter-detail {
     float: left;
@@ -6731,10 +6735,10 @@ header.navbar .navbar-toggle .icon-bar {
     z-index: 2;
 }
 .l-operate-bar a {
-    color: #21a88b;
+    color: #412105;
 }
 .l-operate-bar a:hover {
-    color: #25bb9b;
+    color: #412105;
 }
 .follow-list .l-operate-bar a,
 .follow-list .l-operate-bar a:hover {
@@ -6798,7 +6802,7 @@ header.navbar .navbar-toggle .icon-bar {
     font-size: 14px;
 }
 .chat-content a {
-    color: #25bb9b;
+    color: #412105;
 }
 .chat-content img{
     cursor: -moz-zoom-in;
@@ -6926,7 +6930,7 @@ header.navbar .navbar-toggle .icon-bar {
 .pop-title-link {
     float: right;
     font-size: 16px;
-    color: #1abc9c;
+    color: #412105;
 }
 .pop-close {
     display: block;
@@ -7040,7 +7044,7 @@ header.navbar .navbar-toggle .icon-bar {
 }
 /* 成功提示icon */
 .input-icon.icon-ok-sign {
-  color: #25bb9b;
+  color: #000000;
   display: none;
 }
 /* 提示icon及提示文案显示 */

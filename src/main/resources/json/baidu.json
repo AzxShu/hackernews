@@ -1,0 +1,25 @@
+{
+    "HtmlContent":"id=content_left",
+    "itm":{
+        "key":"class=result",
+        "content":{
+            "title":{
+                "id":"class=c-title",
+                "fun_1":"function=text"
+            },
+            "url":{
+                "id":"class=c-title",
+                "fun_1":"function=select:a",
+                "fun_2":"function=attr:href"
+            },
+            "intro":{
+                "id":"class=c-span-last|c-summary",
+                "fun_1":"function=ownText"
+            },
+            "media":{
+                "id":"class=c-author",
+                "fun_1":"function=ownText"
+            }
+        }
+    }
+}

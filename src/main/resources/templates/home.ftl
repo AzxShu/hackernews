@@ -1,35 +1,36 @@
 <#include "header.ftl">
 
 
-<div id="main">
+
+<div id="main" >
+
     <div class="container" id="daily">
         <div class="jscroll-inner">
             <div class="daily">
-
-           <#assign  cur_date =''/>
-           <#list vos as vo >
-            <#if cur_date != vo.news.createdDate?string("yyyy-MM-dd")>
-                 <#if vo_index gt 0 >
-                      </div> <#--   上一个要收尾 -->
-                 </#if>
-                <#assign  cur_date =vo.news.createdDate?string("yyyy-MM-dd")/>
+                <#assign  cur_date =''/>
+                <#list vos as vo >
+                <#if cur_date != vo.news.createdDate?string("yyyy-MM-dd")>
+                <#if vo_index gt 0 >
+            </div> <#--   上一个要收尾 -->
+            </#if>
+            <#assign  cur_date =vo.news.createdDate?string("yyyy-MM-dd")/>
             <h3 class="date">
                 <i class="fa icon-calendar"></i>
                 <span>新闻资讯 &nbsp; ${vo.news.createdDate?string("yyyy-MM-dd")}</span>
             </h3>
             <div class="posts">
-            </#if>
-                 <div class="post">
+                </#if>
+                <div class="post">
                     <div class="votebar">
-                        <#if  vo.news.likeCount gt 0 >
-                        <button class="click-like up pressed" data-id="${vo.news.id!}" title="赞同"><i class="vote-arrow"></i><span class="count">${vo.news.likeCount!}</span></button>
+                        <#if  vo.like gt 0 >
+                            <button class="click-like up pressed" data-id="${vo.news.id!}" title="赞同"><i class="vote-arrow"></i><span class="count">${vo.news.likeCount!}</span></button>
                         <#else>
-                        <button class="click-like up" data-id="${vo.news.id!}" title="赞同"><i class="vote-arrow"></i><span class="count">${vo.news.likeCount!}</span></button>
+                            <button class="click-like up" data-id="${vo.news.id!}" title="赞同"><i class="vote-arrow"></i><span class="count">${vo.news.likeCount!}</span></button>
                         </#if>
-                        <#if vo.news.likeCount < 0>
-                        <button class="click-dislike down pressed" data-id="${vo.news.id!}" title="反对"><i class="vote-arrow"></i></button>
+                        <#if vo.like < 0>
+                            <button class="click-dislike down pressed" data-id="${vo.news.id!}" title="反对"><i class="vote-arrow"></i></button>
                         <#else>
-                        <button class="click-dislike down" data-id="${vo.news.id!}" title="反对"><i class="vote-arrow"></i></button>
+                            <button class="click-dislike down" data-id="${vo.news.id!}" title="反对"><i class="vote-arrow"></i></button>
                         </#if>
                     </div>
                     <div class="content">
@@ -46,38 +47,34 @@
                                             <i class="fa icon-comment"></i> ${vo.news.commentCount!}
                                         </span>
                             </div>
+                            <p>${vo.news.category!}
+                            </p>
                         </div>
                     </div>
+
                     <div class="user-info">
                         <div class="user-avatar">
                             <a href="${contextPath!}/user/$!{vo.user.id}/"><img width="32" class="img-circle" src="${vo.user.headUrl}"></a>
                         </div>
-
-
                     </div>
-
-                    <div class="subject-name">来自 <a href="${contextPath!}/user/${vo.user.id}/">${vo.user.name}</a></div>
+                    <div class="subject-name">来自 <a href="${contextPath!}/user/${vo.user.id}/">${vo.user.name}</a>
+                    发布自:${vo.news.time}</div>
                 </div>
+                <#if vo_index == vos?size >
 
-
-              <#if vo_index == vos?size >
-                 </div>  <#--最后有个元素要收尾 -->
-              </#if>
-
+            </div>  <#--最后有个元素要收尾 -->
+            </#if>
             </#list>
-
-
         </div>
     </div>
 </div>
 
 </div>
-
-
+<#include "fenye.ftl">
 <#if pop??>
-<script>
-    window.loginpop = ${(pop==0)?c};
-</script>
+    <script>
+        window.loginpop = ${(pop==0)?c};
+    </script>
 </#if>
 
 <#include "footer.ftl">

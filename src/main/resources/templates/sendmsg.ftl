@@ -8,7 +8,7 @@
         <div class="modal-wrapper" aria-hidden="true">
             <div class="modal-dialog absolute-position" tabindex="0" role="dialog" aria-labelledby=":i" style="width: 550px;left:50%">
                 <div class="modal-dialog-title">
-                    <span class="modal-dialog-title-text" id=":i" role="heading">发送私信</span>
+                    <span class="modal-dialog-title-text" id=":i" role="heading">发私信</span>
                     <span class="modal-dialog-title-close" role="button" tabindex="0" aria-label="Close"></span>
                 </div>
                 <div class="modal-dialog-content">
@@ -34,8 +34,7 @@
                                         <div class="zm-editable-editor-outer">
                                             <div class="zm-editable-editor-field-wrap">
                                                 <div id="mock:k" class="zm-editable-editor-field-element editable" g_editable="true" role="textbox" contenteditable="true" style="font-style: italic;">
-                                                    <p>
-                                                        <span id="msg_content" style="font-style: normal;color: #999;" aria-placeholder="私信内容x"></span></p>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -59,7 +58,7 @@
 
         var elementById = document.getElementById("msg_to");
         var to=elementById.value;
-        var elementById2 = document.getElementById("msg_content");
+        var elementById2 = document.getElementById("mock:k");
         var content=elementById2.innerText;
         //alert(content)
 
@@ -73,9 +72,9 @@
                 data: 'toName='+to+'&&content='+content ,
                 success:function(data){
                     //alert(data)
-                    var dataobj = eval('(' + data + ')');
-                    //alert(dataobj.code)
-                    //alert(dataobj.msg)
+                    var dataobj = data;
+                    alert(dataobj.code)
+                    alert(dataobj.msg)
 
                     if (dataobj.code == '1') {
                         errtag.innerText=dataobj.msg

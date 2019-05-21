@@ -21,6 +21,36 @@ public class News {
 
   private int userId;
 
+  private float score;
+
+  private String time;
+
+  private String category;
+
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
+  }
+
+  public String getTime() {
+    return time;
+  }
+
+  public void setTime(String time) {
+    this.time = time;
+  }
+
+  public float getScore() {
+    return score;
+  }
+
+  public void setScore(float score) {
+    this.score = score;
+  }
+
   public int getId() {
     return id;
   }
@@ -83,5 +113,22 @@ public class News {
 
   public void setUserId(int userId) {
     this.userId = userId;
+  }
+
+  @Override
+  public String toString() {
+    return "News{" +
+            "id=" + id +
+            ", title='" + title + '\'' +
+            ", link='" + link + '\'' +
+            ", image='" + image + '\'' +
+            ", likeCount=" + likeCount +
+            ", commentCount=" + commentCount +
+            ", createdDate=" + createdDate +
+            ", userId=" + userId +
+            ", score=" + score +
+            ", time='" + time + '\'' +
+            ", category='" + category + '\'' +
+            '}';
   }
 }

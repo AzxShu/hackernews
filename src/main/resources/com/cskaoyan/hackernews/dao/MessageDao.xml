@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cskaoyan.hackernews.dao.MessageDao">
+
+    <resultMap id="findusermessage" type="VoBeanOfMessageAndUser">
+        <association property="conversation" javaType="message">
+            <id column="mid" property="id"></id>
+            <result column="from_id" property="fromId"/>
+            <result column="to_id" property="toId"/>
+            <result column="content" property="content"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="has_read" property="hasRead"/>
+            <result column="conversation_id" property="conversationId"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="username" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="findUserMessageByUserId" resultMap="findusermessage">
+        SELECT
+        COUNT(m.id) AS MID,
+        m.`from_id`,
+        m.`to_id`,
+        m.`content`,
+        m.`created_date`,
+        m.`has_read`,
+        m.`conversation_id`,
+        u.`id` as id,
+        u.`name` as username,
+        u.`head_url` AS headUrl
+        FROM
+        message AS m
+        LEFT JOIN
+        USER AS u
+        ON
+        m.`from_id` = u.`id`
+        WHERE
+            m.`from_id` = #{id}
+            OR
+            m.`to_id` = #{id}
+            GROUP BY m.conversation_id
+    </select>
+
+    <insert id="addMessage">
+        insert into message(from_id,to_id,content,created_date,has_read,conversation_id)
+        values(#{from_id},#{to_id},#{content},#{date},#{hasread},#{s})
+    </insert>
+
+    <resultMap id="findmessageByconversationId" type="msg">
+        <association property="message" javaType="message">
+            <result column="from_id" property="fromId"/>
+            <result column="to_id" property="toId"/>
+            <result column="content" property="content"/>
+            <result column="created_date" property="createdDate"/>
+            <result column="has_read" property="hasRead"/>
+            <result column="conversation_id" property="conversationId"/>
+        </association>
+        <association property="user" javaType="user">
+            <result column="id" property="id"/>
+            <result column="usrname" property="name"/>
+            <result column="headurl" property="headUrl"/>
+        </association>
+    </resultMap>
+
+    <select id="findMessageByconversationId" resultMap="findmessageByconversationId">
+        SELECT
+        m.`from_id`,
+        m.`to_id`,
+        m.`content`,
+        m.`created_date`,
+        m.`has_read`,
+        m.`conversation_id`,
+        u.`id`,
+        u.`name`,
+        u.`head_url` as headUrl
+        FROM message AS m
+        LEFT JOIN USER AS u
+        ON  m.`from_id` = u.`id`
+        WHERE m.`conversation_id` = #{conversationId}
+    </select>
+</mapper>

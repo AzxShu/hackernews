@@ -7,6 +7,13 @@ import java.util.List;
 public class VoBean {
     User user;
     News news;
+    int like;
+    public int getLike() {
+        return like;
+    }
+    public void setLike(int like) {
+        this.like = like;
+    }
     public News getNews() {
         return news;
     }
@@ -28,6 +35,7 @@ public class VoBean {
         return "VoBean{" +
                 "user=" + user +
                 ", news=" + news +
+                ", like=" + like +
                 '}';
     }
 }

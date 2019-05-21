@@ -7,6 +7,7 @@ public class User {
     private String password;
     private String salt;
     private String headUrl;
+    private String email;
 
     public User() {
 
@@ -16,6 +17,14 @@ public class User {
         this.password = "";
         this.salt = "";
         this.headUrl = "";
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
@@ -56,5 +65,17 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", headUrl='" + headUrl + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

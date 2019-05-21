@@ -1,0 +1,24 @@
+{
+    "HtmlContent":"id=result",
+    "itm":{
+        "key":"class=box-result",
+        "content":{
+            "title":{
+                "id":"function=select:a",
+                "fun_1":"function=ownText"
+            },
+            "url":{
+                "id":"function=select:a",
+                "fun_1":"function=attr:href"
+            },
+            "intro":{
+                "id":"class=content",
+                "fun_1":"function=text"
+            },
+            "media":{
+                "id":"class=fgray_time",
+                "fun_1":"function=ownText"
+            }
+        }
+    }
+}

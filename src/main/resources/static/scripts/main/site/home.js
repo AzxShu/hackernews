@@ -9,7 +9,8 @@
         binds: {
             //.表示class #表示id
             'click .js-login': fClickLogin,
-            'click .js-share': fClickShare
+            'click .js-share': fClickShare,
+            'click .js-update': fClickUpdate
 
         },
         events: {
@@ -33,6 +34,17 @@
                     }
                 }
             });
+    }
+    function fClickUpdate() {
+        var that = this;
+        PopupUpload.show({
+            listeners: {
+                done: function () {
+                    //alert('login');
+                    window.location.reload();
+                }
+            }
+        });
     }
     /*function fClickSendMgs() {
         var that = this;

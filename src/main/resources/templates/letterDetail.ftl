@@ -4,8 +4,8 @@
             <ul class="letter-chatlist">
                 <#list  messages as msg >
                 <li id="msg-item-4009580">
-            <a class="list-head" href="${contextPath}/user/${msg.userId!}">
-            <img alt="头像" src="${msg.headUrl!}">
+            <a class="list-head" href="${contextPath}/user/${msg.user.id!}">
+            <img alt="头像" src="${msg.user.headUrl!}">
             </a>
             <div class="tooltip fade right in">
             <div class="tooltip-arrow"></div>
